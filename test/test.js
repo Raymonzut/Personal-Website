@@ -1,5 +1,5 @@
 const assert = require('chai').assert;
-const app = require('../app');
+const app = require('../src/app');
 
 describe('App', () => {
 	it('should greet with Hello World!', () => {
