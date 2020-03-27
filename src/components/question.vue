@@ -15,6 +15,10 @@ export default {
 
 <style scoped>
 #question_box {
+  --text-spacing: 0.75em;
+
   font-style: italic;
+  margin-top: var(--text-spacing);
+  margin-bottom: var(--text-spacing);
 }
 </style>
