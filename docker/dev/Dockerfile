@@ -21,4 +21,3 @@ CMD ["npm", "run", "serve"]
 
 # allow to be peeked inside
 EXPOSE 8080
-
