@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style scoped>
-#qa{
+#qa {
   --block-spacing: 7.5em;
 
   margin-top: var(--block-spacing);
