@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/Raymonzut/Personal-Website#readme",
   "dependencies": {
-    "core-js": "^3.6.4",
     "vue": "^2.6.11"
   },
   "devDependencies": {
