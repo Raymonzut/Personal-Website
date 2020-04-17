@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 
 services:
   website-dev:
@@ -6,6 +6,6 @@ services:
       context: ./
       dockerfile: docker/dev/Dockerfile
     volumes:
-      - ./src:/var/www/app
+      - ./client/src:/var/www/app
     ports:
       - 8080:8080
