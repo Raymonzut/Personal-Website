@@ -1,7 +1,12 @@
 module.exports = {
-  postData: [
-    { title: 'A walk in the park' },
-    { title: 'Down the road', author: 'Alice' },
-    { title: 'On a summer day', author: 'Bob' },
-  ],
+  getPosts: function() {
+    this.$http
+      .get('http://localhost:5000/api/posts')
+      .then(res => {
+        this.posts = res.body
+      })
+      .catch(err => {
+        console.log(`Error: ${err}`)
+      })
+  },
 }
