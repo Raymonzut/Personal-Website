@@ -16,6 +16,15 @@ async function getPostCollection() {
 
 router.get('/', async (req, res) => {
   const posts = await getPostCollection()
+  if (req.query.sort === '-1' || req.query.sort === '1') {
+    res.send(
+      await posts
+        .find({})
+        .sort({ date: parseInt(req.query.sort) })
+        .toArray()
+    )
+    return
+  }
   res.send(await posts.find({}).toArray())
 })
 
