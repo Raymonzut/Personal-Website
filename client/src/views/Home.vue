@@ -1,17 +1,17 @@
 <template>
 <div id="home">
   <h1>Home</h1>
-  <aboutme/>
+  <AboutMe></AboutMe>
 </div>
 </template>
 
 <script>
-import aboutme from '@/components/aboutme'
+import AboutMe from '@/components/AboutMe'
 
 export default {
   name: "Home",
   components: {
-    aboutme
+    AboutMe
   },
 }
 </script>

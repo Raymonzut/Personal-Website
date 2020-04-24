@@ -18,7 +18,7 @@
 import me from '../me.js'
 
 export default {
-  name: 'aboutme',
+  name: 'AboutMe',
   computed: {
     age: me.age
   }
