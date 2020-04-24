@@ -1,19 +1,19 @@
 <template>
   <div id='qa'>
-    <question :q='q'/>
-    <answer :a='a'/>
+    <Question :q='q'></Question>
+    <Answer :a='a'></Answer>
   </div>
 </template>
 
 <script>
-import question from './question.vue'
-import answer from './answer.vue'
+import Question from './Question.vue'
+import Answer from './Answer.vue'
 
 export default {
   name: 'qa',
   components: {
     question,
-    answer,
+    Answer,
   },
   props: {
     q: String,
