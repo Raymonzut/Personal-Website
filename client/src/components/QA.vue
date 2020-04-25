@@ -16,8 +16,14 @@ export default {
     Answer,
   },
   props: {
-    q: String,
-    a: String
+    q: {
+      type: String,
+      required: true,
+    },
+    a: {
+      type: String,
+      required: true,
+    }
   }
 }
 </script>
