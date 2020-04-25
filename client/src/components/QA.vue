@@ -12,7 +12,7 @@ import Answer from './Answer.vue'
 export default {
   name: 'QA',
   components: {
-    question,
+    Question,
     Answer,
   },
   props: {
