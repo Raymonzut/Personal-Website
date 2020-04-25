@@ -8,8 +8,21 @@
 </template>
 
 <script>
+import { getPosts } from '../remote'
+
 export default {
   name: "Post",
+  data() { 
+    return {
+      post: {},
+    }
+  },
+  methods: {
+    getPosts
+  },
+  mounted() {
+    getPosts.call(this, this._props.id)
+  },
   props: {
     id: {
       type: String,
