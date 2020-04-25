@@ -19,7 +19,7 @@
 import { getPosts } from '../remote'
 
 export default {
-  name: "posts",
+  name: "Posts",
   computed: {
     months: function () {
       const dates = this.posts.map(post => new Date(post.date))
