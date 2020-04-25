@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Posts from '../views/Posts.vue'
+import Post from '../views/Post.vue'
 import QAPage from '../views/QAPage'
 
 Vue.use(VueRouter)
@@ -16,6 +17,12 @@ const routes = [
     path: "/posts",
     name: "Posts",
     component: Posts,
+  },
+  {
+    path: "/posts/:id",
+    name: "Post",
+    component: Post,
+    props: true,
   },
   {
     path: "/qa",
