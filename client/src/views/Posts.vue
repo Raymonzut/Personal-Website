@@ -2,7 +2,7 @@
   <div id="posts" v-if="months.length >= 0">
     <h3 class="month" v-for="(month, i) in months" :key="i">
       {{ month }}
-      <div class="listAlign">
+      <div> 
         <ul>
           <li v-for="(postItem, j) in getPostItems(month)" :key="j">
             {{ getPostItemDate(postItem) }} – {{ postItem.title }}
