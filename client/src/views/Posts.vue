@@ -5,7 +5,8 @@
       <div> 
         <ul>
           <li v-for="(postItem, j) in getPostItems(month)" :key="j">
-            {{ getPostItemDate(postItem) }} – {{ postItem.title }}
+            {{ getPostItemDate(postItem) }} – 
+            <a :href="/posts/ + postItem._id">{{ postItem.title }}</a>
           </li>
         </ul>
       </div>
