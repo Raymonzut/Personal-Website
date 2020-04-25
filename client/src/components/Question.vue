@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'question',
+  name: 'Question',
   props: {
     q: String
   }
