@@ -1,10 +1,4 @@
-const assert = require('chai').assert
+const assert = require('assert').strict
 const me = require('../src/me')
 
-describe('me', () => {
-  describe('age', () => {
-    it('should return a positive number', () => {
-      assert.isAbove(me.age(), 0)
-    })
-  })
-})
+assert(me.age() > 0, 'age should return a positive number')
