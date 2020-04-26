@@ -8,7 +8,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "serve": "vue-cli-service serve",
-    "test": "mocha"
+    "test": "node test_runner"
   },
   "repository": {
     "type": "git",
