@@ -1,0 +1,6 @@
+All the posts will be in here seperate in JSON format
+
+post
+  - title
+  - date
+  - content
