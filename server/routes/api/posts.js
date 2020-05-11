@@ -1,43 +1,61 @@
 const express = require('express')
-const mongodb = require('mongodb')
+const fs = require('fs')
 
 const router = express.Router()
 
-const DB_NAME = process.env.DB_NAME || 'test'
-const URI = process.env.URI || 'mongodb://localhost:27017'
+const posts_dir = 'posts/'
 
-async function getPostCollection() {
-  const client = await mongodb.MongoClient.connect(URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  return client.db(DB_NAME).collection('posts')
+if (!fs.existsSync(posts_dir)) throw Error(`Missing ${posts_dir}`)
+
+let posts = readPosts();
+
+setInterval(() => posts = readPosts(), 1000 * 60 * 60)
+
+function readPostsDelayed() {
+  return new Promise(setTimeout, 1000).then(posts = readPosts())
+}
+
+function readPosts() {
+  console.warn("reading all posts")
+  const files = fs.readdirSync(posts_dir)
+
+  if (files.length === 0) throw Error(`Could not find posts in ${posts_dir}`)
+  
+  return files.filter(file_name => file_name.endsWith('.json'))
+              .map(file_name => `${posts_dir}${file_name}`)
+              .map(readJSONAsObject)
+}
+
+function readJSONAsObject(filename) {
+  return JSON.parse(fs.readFileSync(filename, 'utf8'))
+}
+
+function notFoundResponse(res) {
+  res.status(404).send('Sorry, can not find that')
 }
 
 router.get('/', async (req, res) => {
-  const posts = await getPostCollection()
   if (req.query.sort === '-1' || req.query.sort === '1') {
-    res.send(
-      await posts
-        .find({})
-        .sort({ date: parseInt(req.query.sort) })
-        .toArray()
-    )
-    return
+    const posts_sorted = posts.sort((a, b) => {
+      return new Date(a.date).getTime() - new Date(b.date).getTime()
+    })
+    
+    if (req.query.sort === '1') res.send(posts_sorted) 
+    else res.send(posts_sorted.reverse())
   }
-  res.send(await posts.find({}).toArray())
 })
 
 router.get('/:id', async (req, res) => {
   const re = /[0-9A-Fa-f]{24}/g
 
   if (!re.test(req.params.id)) {
-    res.status(404).send('Sorry, can not find that')
+    notFoundResponse(res)
     return
   }
+  const results = posts.filter(post => post._id === req.params.id)
 
-  const posts = await getPostCollection()
-  res.send(await posts.find({ _id: mongodb.ObjectID(req.params.id) }).toArray())
+  if (!results.length) notFoundResponse(res) 
+  else res.send(results[0])
 })
 
 module.exports = router
