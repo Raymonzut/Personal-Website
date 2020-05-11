@@ -10,7 +10,7 @@ module.exports = {
           if (res.body.length === 0) {
             throw Error("Response body empty")
           }
-          this.post = res.body[0]
+          this.post = res.body
         }
         else {
           this.posts = res.body
