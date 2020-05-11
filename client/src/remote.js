@@ -1,6 +1,6 @@
 module.exports = {
   getPosts: function(id) {
-    const BASE_URL = 'http://localhost:5000/api/posts'
+    const BASE_URL = '/api/posts'
     const URL = BASE_URL + (id ? `/${id}` : '?sort=-1')
 
     this.$http
