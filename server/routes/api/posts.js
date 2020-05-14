@@ -10,10 +10,6 @@ let posts = readPosts();
 
 setInterval(() => posts = readPosts(), 1000 * 60 * 60)
 
-function readPostsDelayed() {
-  return new Promise(setTimeout, 1000).then(posts = readPosts())
-}
-
 function readPosts() {
   console.warn("reading all posts")
   const files = fs.readdirSync(posts_dir)
