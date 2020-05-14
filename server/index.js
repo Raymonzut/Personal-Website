@@ -1,14 +1,23 @@
-const express = require('express')
-const cors = require('cors')
+const fastify = require('fastify')()
 
-const app = express()
-
-app.use(cors())
+fastify.register(require('fastify-cors'))
 
 const posts = require('./routes/api/posts')
 
-app.use('/posts', posts)
+// Assuming they are all get requests
+for (let [route, resolver] of posts.entries()) {
+  fastify.get('/posts' + route, resolver)
+}
 
 const port = process.env.PORT || 5000
 
-app.listen(port, () => console.log(`Server started on port ${port}`))
+const start = async () => {
+  try {
+    await fastify.listen(port, '0.0.0.0')
+    console.log(`Launched on port ${port} 🚀`)
+  } catch (err) {
+    fastify.log.error(err)
+    process.exit(1)
+  }
+}
+start()
