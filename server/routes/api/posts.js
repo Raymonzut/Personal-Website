@@ -37,7 +37,10 @@ routes.set('', async (req, res) => {
     
     if (req.query.sort === '1') res.send(posts_sorted) 
     else res.send(posts_sorted.reverse())
+    return
   }
+  // Default response when there are no interesting queries
+  res.send(posts)
 })
 
 routes.set('/:id', async (req, res) => {
