@@ -56,4 +56,25 @@ routes.set('/:id', async (req, res) => {
   else res.send(results[0])
 })
 
+// For the sitemap.xml, will be listed in the XML Sitemap Index
+routes.set('/urls', async (req, res) => {
+  const re = /(\/api\/)?(.*)\/urls/g
+  const result = [...req.raw.originalUrl.matchAll(re)]
+  if (!result) notFoundResponse(res)
+  const endpoint = result [1] ? result[1][2] : result[0][2]
+  // Assumes https
+  const BASE_URL = 'https://' + req.raw.hostname + endpoint 
+  const urls = posts.map(post => 
+    `\n   <url>
+      <loc>${BASE_URL}/${post._id}</loc>
+      <lastmod>${post.date}</lastmod>
+      <changefreq>never</changefreq>
+      <priority>0.9</priority>
+   </url>`
+  ).join("\n")
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\r<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+               ${urls}\n\r</urlset>`
+  res.send(xml)
+})
+
 module.exports = routes
