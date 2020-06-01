@@ -5,10 +5,10 @@
     <router-link to="/posts">Posts</router-link> |
     <router-link to="/qa">QA</router-link>
   </div>
-  <router-view />
   <div>
-  <button @click="toggleTheme">{{ themeToggleVerb }} my eyes</button>
+    <button id="toggleThemeButton" @click="toggleTheme">{{ themeToggleVerb }} my eyes</button>
   </div>
+  <router-view />
 </div>
 </template>
 
@@ -65,6 +65,22 @@ body {
   padding-top: 60px;
   background-color: var(--primary-color);
   min-height: 100vh;
+}
+
+#toggleThemeButton {
+  background: var(--primary-color);
+  border: 0px;
+  color: var(--text-color);
+  margin: 0 auto;
+
+  margin-right: 0px;
+}
+
+@media (min-width:420px) {
+  #toggleThemeButton {
+    float:right;
+    margin-right: 10px;
+  }
 }
 
 </style>
