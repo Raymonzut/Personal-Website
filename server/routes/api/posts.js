@@ -78,7 +78,9 @@ routes.set('/urls', async (req, res) => {
   ).join("\n")
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\r<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
                ${urls}\n\r</urlset>`
-  res.send(xml)
+
+  res.header('Content-Type', 'application/xml')
+  res.status(200).send(xml)
 })
 
 module.exports = routes
