@@ -60,7 +60,11 @@ routes.set('/:id', async (req, res) => {
 routes.set('/urls', async (req, res) => {
   const re = /(\/api\/)?(.*)\/urls/g
   const result = [...req.raw.originalUrl.matchAll(re)]
-  if (!result) notFoundResponse(res)
+  if (!result) {
+    notFoundResponse(res)
+    return
+  }
+
   const endpoint = result [1] ? result[1][2] : result[0][2]
   // Assumes https
   const BASE_URL = 'https://' + req.raw.hostname + endpoint 
