@@ -37,7 +37,10 @@ routes.set('', async (req, res) => {
     
     if (req.query.sort === '1') res.send(posts_sorted) 
     else res.send(posts_sorted.reverse())
+    return
   }
+  // Default response when there are no interesting queries
+  res.send(posts)
 })
 
 routes.set('/:id', async (req, res) => {
@@ -51,6 +54,31 @@ routes.set('/:id', async (req, res) => {
 
   if (!results.length) notFoundResponse(res) 
   else res.send(results[0])
+})
+
+// For the sitemap.xml, will be listed in the XML Sitemap Index
+routes.set('/urls', async (req, res) => {
+  const re = /(\/api\/)?(.*)\/urls/g
+  const result = [...req.raw.originalUrl.matchAll(re)]
+  if (!result) {
+    notFoundResponse(res)
+    return
+  }
+
+  const endpoint = result [1] ? result[1][2] : result[0][2]
+  // Assumes https
+  const BASE_URL = 'https://' + req.raw.hostname + endpoint 
+  const urls = posts.map(post => 
+    `\n   <url>
+      <loc>${BASE_URL}/${post._id}</loc>
+      <lastmod>${post.date}</lastmod>
+      <changefreq>never</changefreq>
+      <priority>0.9</priority>
+   </url>`
+  ).join("\n")
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\r<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+               ${urls}\n\r</urlset>`
+  res.send(xml)
 })
 
 module.exports = routes
