@@ -1,0 +1,15 @@
+nav {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+@media (max-width: 420px) {
+  #app {
+    margin-left: 0vw;
+    margin-right: 0vw;
+  }
+}
+
+.question {
+  font-style: italic;
+}
