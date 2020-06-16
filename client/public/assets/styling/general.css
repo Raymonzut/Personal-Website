@@ -9,3 +9,7 @@ nav {
     margin-right: 0vw;
   }
 }
+
+.question {
+  font-style: italic;
+}
