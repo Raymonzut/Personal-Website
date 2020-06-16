@@ -1,0 +1,18 @@
+:root {
+  --primary-color: #272736;
+  --text-color: #ffffeb;
+
+  /*  Overriding DP DS */
+  --body-background: var(--primary-color);
+  --body-color: var(--text-color);
+
+  --nav-color: var(--primary-color);
+  --nav-background: var(--text-color);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --primary-color: #ffffeb;
+    --text-color: #272736;
+  }
+}
