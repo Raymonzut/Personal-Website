@@ -1,8 +1,4 @@
-module.exports = {
-  age: age,
-}
-
-function age() {
+export function age() {
   let birthdate = new Date(2002, 8, 29)
   let now = new Date()
 
