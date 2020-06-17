@@ -8,6 +8,8 @@
 
   --nav-color: var(--primary-color);
   --nav-background: var(--text-color);
+
+  --a-color: var(--text-color);
 }
 
 @media (prefers-color-scheme: light) {
