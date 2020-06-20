@@ -1,6 +1,31 @@
+:root {
+  --primary-color: #272736;
+  --text-color: #ffffeb;
+
+  /*  Overriding DP DS */
+  --body-background: var(--primary-color);
+  --body-color: var(--text-color);
+
+  --nav-color: var(--primary-color);
+  --nav-background: var(--text-color);
+
+  --a-color: var(--text-color);
+}
+
 nav {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+
+.question {
+  font-style: italic;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --primary-color: #ffffeb;
+    --text-color: #272736;
+  }
 }
 
 @media (max-width: 420px) {
@@ -8,8 +33,4 @@ nav {
     margin-left: 0vw;
     margin-right: 0vw;
   }
-}
-
-.question {
-  font-style: italic;
 }
