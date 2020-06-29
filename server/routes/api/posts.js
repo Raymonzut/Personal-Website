@@ -70,7 +70,7 @@ routes.set('/urls', async (req, res) => {
   const BASE_URL = 'https://' + req.raw.hostname + endpoint 
   const urls = posts.map(post => 
     `\n   <url>
-      <loc>${BASE_URL}/${post._id}</loc>
+      <loc>${BASE_URL}?post=${post._id}</loc>
       <lastmod>${post.date}</lastmod>
       <changefreq>never</changefreq>
       <priority>0.9</priority>
