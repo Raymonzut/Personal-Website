@@ -56,9 +56,9 @@ routes.set('/:id', async (req, res) => {
   else res.send(results[0])
 })
 
-// For the sitemap.xml, will be listed in the XML Sitemap Index
-routes.set('/urls', async (req, res) => {
-  const re = /(\/api\/)?(.*)\/urls/g
+// Dynamic RSS feed
+routes.set('/rss.xml', async (req, res) => {
+  const re = /(\/api\/)?(.*)\/rss/g
   const result = [...req.raw.originalUrl.matchAll(re)]
   if (!result) {
     notFoundResponse(res)
@@ -67,17 +67,24 @@ routes.set('/urls', async (req, res) => {
 
   const endpoint = result [1] ? result[1][2] : result[0][2]
   // Assumes https
-  const BASE_URL = 'https://' + req.raw.hostname + endpoint 
-  const urls = posts.map(post => 
-    `\n   <url>
-      <loc>${BASE_URL}?post=${post._id}</loc>
-      <lastmod>${post.date}</lastmod>
-      <changefreq>never</changefreq>
-      <priority>0.9</priority>
-   </url>`
+  const BASE_URL = 'https://' + req.raw.hostname + endpoint
+  const ITEMS = posts.map(post =>
+    `\r\n    <item>
+      <title>${post.title}</title>
+      <link>https://${req.raw.hostname}/posts?post=${post._id}</link>
+      <guid>https://${req.raw.hostname}/posts?post=${post._id}</guid>
+      <description>${post.content}</description>
+    </item>`
   ).join("\n")
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>\r<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-               ${urls}\n\r</urlset>`
+  const xml = `<?xml version="1.0" encoding="UTF-8" ?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <atom:link href="https://${req.raw.hostname}/api/posts/rss.xml" rel="self" type="application/rss+xml" />
+    <title>Posts</title>
+    <link>https://${req.raw.hostname}</link>
+    <description>Personal blog</description>
+    <language>en-us</language>
+    ${ITEMS}
+  </channel>\n</rss>`
 
   res.header('Content-Type', 'application/xml')
   res.status(200).send(xml)
