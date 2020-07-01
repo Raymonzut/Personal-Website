@@ -15,7 +15,7 @@ async function showPost(id) {
 
   post.content.split('\n').forEach(paragraph => {
     const p = document.createElement("p")
-    p.textContent = paragraph
+    p.innerHTML = paragraph
     postsDOM.appendChild(p)
   });
 }

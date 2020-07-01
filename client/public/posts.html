@@ -2,18 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta
+  name="description"
+  content="Raymon typing nonsense on his blog">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Raymon Zutekouw</title>
+
+  <link rel="preload" href="./lib/remote.mjs" as="script" crossorigin="anonymous" type="application/javascript">
+  <link rel="preload" href="posts.mjs" as="script" crossorigin="anonymous" type="application/javascript">
 
   <link defer
     rel="stylesheet"
     href="https://cdn.statically.io/gh/dragonprojects/dragondesign/master/main.min.css"
     media="all"
   >
-  <link defer rel="stylesheet" href="css/themes.css" media="all">
   <link defer rel="stylesheet" href="css/general.css" media="all">
-
-  <script defer type="module" src="posts.mjs"></script>
 
 </head>
 <body>
@@ -32,6 +35,7 @@
 
     <!-- Placeholder for posts -->
     <div id="posts"></div>
+    <script async type="module" src="posts.mjs"></script>
   </div>
 </body>
 </html>
