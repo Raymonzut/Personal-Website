@@ -11,7 +11,7 @@
   "author": "Raymonzut",
   "license": "ISC",
   "dependencies": {
-    "fastify": "^2.14.1", 
+    "fastify": "^2.15.1", 
     "fastify-cors": "^3.0.3"
   },
   "devDependencies": {
