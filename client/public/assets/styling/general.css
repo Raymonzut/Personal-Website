@@ -21,6 +21,11 @@ nav {
   font-style: italic;
 }
 
+h2 {
+  font-size: 0.6em;
+  margin: auto 0;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     --primary-color: #ffffeb;

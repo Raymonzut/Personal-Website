@@ -36,7 +36,7 @@ async function updatePosts() {
     month_DOM.textContent = month
 
     month_lists[i].forEach((post, i) => {
-        const post_DOM = document.createElement("h6")
+        const post_DOM = document.createElement("h2")
         post_DOM.textContent = `${post.date.substring(0, 10)} - `
 
         const post_link = document.createElement("a")
