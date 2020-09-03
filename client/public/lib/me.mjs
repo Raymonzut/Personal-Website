@@ -1,5 +1,5 @@
 export function age() {
-  let birthdate = new Date(2002, 8, 29)
+  let birthdate = new Date("29 August 2002")
   let now = new Date()
 
   let age = now.getFullYear() - birthdate.getFullYear()
