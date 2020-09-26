@@ -4,14 +4,14 @@ export function age() {
 
   let age = now.getFullYear() - birthdate.getFullYear()
 
-  if (now.getMonth() < birthdate.getMonth()) {
+  if (now.getMonth() < birthdate.getMonth())
     age--
-  }
+
   if (
     birthdate.getMonth() === now.getMonth() &&
     now.getDate() < birthdate.getDate()
-  ) {
+  )
     age--
-  }
+
   return age
 }
