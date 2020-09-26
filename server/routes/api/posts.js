@@ -73,7 +73,9 @@ routes.set('/rss.xml', async (req, res) => {
       <title>${post.title}</title>
       <link>https://${req.raw.hostname}/posts?post=${post._id}</link>
       <guid>https://${req.raw.hostname}/posts?post=${post._id}</guid>
-      <description>${post.content}</description>
+      <description><![CDATA[${"\n" + post.content.split("\n").reduce((acc, v) => acc + "<p>" + v + "</p>")}]]></description>
+      <content type="html">CONTENT HERE: ${post.content}</content>
+      <pubDate>${post.date}</pubDate>
     </item>`
   ).join("\n")
   const xml = `<?xml version="1.0" encoding="UTF-8" ?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
