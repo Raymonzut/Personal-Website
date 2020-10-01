@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta
+  name="description"
+  content="Raymon typing nonsense on his blog">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raymon Zutekouw</title>
+
+  <link defer
+    rel="stylesheet"
+    href="https://cdn.statically.io/gh/dragonprojects/dragondesign/master/main.min.css"
+    media="all"
+  >
+  <link defer rel="stylesheet" href="css/general.css" media="all">
+</head>
+<body>
+  <main>
+    <nav>
+      <a href="/">Home</a>|
+      <a href="/posts">Posts</a>|
+      <a href="/qa">QA</a>
+    </nav>
+
+    <article>
+      <header>
+        <h1>{{title}}</h1>
+  	<h3>For those using a RSS reader, subscribe here: <a href="/api/posts/rss.xml">rss.xml</a></h3>
+      </header>
+      <time datetime="{{date}}"></time>
+      {{content}}
+    </article>
+  </main>
+</body>
+</html>
