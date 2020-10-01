@@ -14,19 +14,23 @@
     media="all"
   >
   <link defer rel="stylesheet" href="css/general.css" media="all">
-
 </head>
 <body>
-  <div id="app">
+  <main>
     <nav>
       <a href="/">Home</a>|
       <a href="/posts">Posts</a>|
       <a href="/qa">QA</a>
     </nav>
 
-    <h3>For those using a RSS reader, subscribe here: <a href="/api/posts/rss.xml">rss.xml</a></h3>
-    <!-- Placeholder for posts -->
-    <div id="posts"></div>
-  </div>
+    <article>
+      <header>
+        <h1>{{title}}</h1>
+  	<h3>For those using a RSS reader, subscribe here: <a href="/api/posts/rss.xml">rss.xml</a></h3>
+      </header>
+      <time datetime="{{date}}"></time>
+      {{content}}
+    </article>
+  </main>
 </body>
 </html>
