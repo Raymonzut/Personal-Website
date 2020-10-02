@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <atom:link href="https://raymon.dev/api/posts/rss.xml" rel="self" type="application/rss+xml" />
+    <title>Posts</title>
+    <link>https://raymon.dev</link>
+    <description>Personal blog</description>
+    <language>en-us</language>
+
+{{items}}
+  </channel>
+</rss>

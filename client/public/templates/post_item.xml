@@ -1,0 +1,14 @@
+    <item>
+      <title>{{title}}</title>
+      <link>https://raymon.dev/posts/{{id}}.html</link>
+      <guid>https://raymon.dev/posts/{{id}}.html</guid>
+      <description>
+	<![CDATA[
+          {{content}}
+	]]>
+      </description>
+      <content type="html">
+        {{content}}
+      </content>
+      <pubDate>{{date}}</pubDate>
+    </item>
