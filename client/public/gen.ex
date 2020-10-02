@@ -1,6 +1,9 @@
 # Templates will be filled by posts
-index_template = File.read!("./templates/index.html")
-post_template = File.read!("./templates/post.html")
+index_template = File.read!("./templates/post_index_page.html")
+post_template = File.read!("./templates/post_single_page.html")
+
+post_feed_item_template = File.read!("./templates/post_item.xml")
+post_feed_template = File.read!("./templates/posts.xml")
 
 post_contents = File.ls!("./posts")
   |> Enum.reject(fn(x) -> String.starts_with?(x, ".") end)
@@ -47,3 +50,20 @@ post_contents
           end))
       |> File.close()
   end)
+
+post_feed = post_contents
+  |> Enum.sort_by(fn m -> Map.get(m, :date) end)
+  |> Enum.reverse()
+  |> Enum.map(fn post ->
+          Regex.compile!("{{(.*)}}") |>
+    Regex.replace(post_feed_item_template, fn _, key -> Map.get(post, String.to_atom(key))
+    end)
+  end)
+  |> Enum.join("\n")
+  |> (fn items -> (Regex.compile!("{{items}}") |>
+    Regex.replace(post_feed_template, fn _, __ -> items end))
+      end).()
+
+File.open!("./gen/rss.xml", [:write])
+  |> IO.binwrite(post_feed)
+  |> File.close()
