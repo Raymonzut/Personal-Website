@@ -1,6 +1,6 @@
 # Templates will be filled by posts
-index_template = File.read!("./templates/index.html")
-post_template = File.read!("./templates/post.html")
+index_template = File.read!("./templates/post_index_page.html")
+post_template = File.read!("./templates/post_single_page.html")
 
 post_contents = File.ls!("./posts")
   |> Enum.reject(fn(x) -> String.starts_with?(x, ".") end)
