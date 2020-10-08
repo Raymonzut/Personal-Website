@@ -23,6 +23,7 @@ As the website is quite far in development, more focus is put into making relaxi
 
 - Swapping QA page for a podcast page
 - Adding a code++ page: page with a collection of helpful code improvements I came across
+- Adding a portfolio
 
 ## Thank you
 Thanks for reading all of this!
