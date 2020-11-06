@@ -32,14 +32,15 @@ post_contents = File.ls!("./posts")
       |> Enum.reduce(%{}, fn(x, acc) -> Map.merge(x, acc) end)
      end)
 
+months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 index_file = post_contents
-  |> Enum.sort_by(fn m -> Map.get(m, :date) end)
-  |> Enum.reverse()
+  |> Enum.sort_by(fn m -> Map.get(m, :date) |> (fn d -> Enum.find_index(months, &(&1 == String.slice(d, 8..10))) end).() end)
   # Group by month
-  |> Enum.group_by(fn m -> Map.get(m, :date) |> String.slice(0..6) end)
+  |> Enum.group_by(fn m -> Map.get(m, :date) |> String.slice(8..15) end)
+  |> Enum.sort_by(fn {d, _c} -> Enum.find_index(months, &(&1 == String.slice(d, 0..2))) end)
   |> Enum.reverse()
   |> Enum.map(fn {month, posts} -> "\n<h1>" <> month <> "</h1>\n" <> (posts |>
-      Enum.map(fn post -> "<h2>" <> (Map.get(post, :date) |> String.slice(0..9)) <>
+      Enum.map(fn post -> "<h2>" <> (Map.get(post, :date) |> String.slice(0..6)) <>
                         " - <a href=\"" <> Map.get(post, :id) <> ".html\">" <> Map.get(post, :title) <> "</a></h2>"
       end) |> Enum.join("\n")) end) 
   |> Enum.join("\n")
