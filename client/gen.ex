@@ -48,13 +48,13 @@ index_file = post_contents
   |> (fn v -> %{index: v} end).()
   |> fill_template_pretemplated.(index_template).()
 
-File.open!("./gen/index.html", [:write])
+File.open!("./public/gen/index.html", [:write])
   |> IO.binwrite(index_file)
   |> File.close()
 
 post_contents
   |> Enum.each(fn post ->
-      File.open!("./gen/" <> Map.get(post, :id) <> ".html", [:write])
+      File.open!("./public/gen/" <> Map.get(post, :id) <> ".html", [:write])
       |> IO.binwrite(fill_template.(post_template, post))
       |> File.close()
   end)
@@ -67,6 +67,6 @@ post_feed = post_contents
   |> (fn v -> %{items: v} end).()
   |> fill_template_pretemplated.(post_feed_template).()
 
-File.open!("./gen/rss.xml", [:write])
+File.open!("./public/gen/rss.xml", [:write])
   |> IO.binwrite(post_feed)
   |> File.close()
