@@ -35,6 +35,7 @@ post_contents = File.ls!("./posts")
 months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 index_file = post_contents
   |> Enum.sort_by(fn m -> Map.get(m, :date) |> (fn d -> Enum.find_index(months, &(&1 == String.slice(d, 8..10))) end).() end)
+  |> Enum.reverse()
   # Group by month
   |> Enum.group_by(fn m -> Map.get(m, :date) |> String.slice(8..15) end)
   |> Enum.sort_by(fn {d, _c} -> (length months) * elem(Integer.parse(String.slice(d, 4..7)), 0)
