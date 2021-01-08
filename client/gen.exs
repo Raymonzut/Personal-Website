@@ -38,8 +38,7 @@ index_file = post_contents
   |> Enum.reverse()
   # Group by month
   |> Enum.group_by(fn m -> Map.get(m, :date) |> String.slice(8..15) end)
-  |> Enum.sort_by(fn {d, _c} -> (length months) * elem(Integer.parse(String.slice(d, 4..7)), 0)
-                                                + Enum.find_index(months, &(&1 == String.slice(d, 0..2))) end)
+  |> Enum.sort_by(fn {d, _c} -> ((length months) * elem(Integer.parse(String.slice(d, 4..7)), 0)) + Enum.find_index(months, &(&1 == String.slice(d, 0..2))) end)
   |> Enum.reverse()
   |> Enum.map(fn {month, posts} -> "\n<h1>" <> month <> "</h1>\n" <> (posts |>
       Enum.map(fn post -> "<h2>" <> (Map.get(post, :date) |> String.slice(0..6)) <>
